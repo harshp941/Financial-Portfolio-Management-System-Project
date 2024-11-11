@@ -4,7 +4,7 @@ import { Transaction } from './transaction.js';
 
 // Reference to the HTML elements for updating the UI
 const portfolioValueElement = document.getElementById('portfolio-value');
-const portfolioAllocationElement = document.getElementById('portfolio-allocation').getElementsByTagName('tbody')[0];
+const portfolioAllocationElement = document.getElementById('portfolio-allocation').getElementsByTagName('tbody')[0]; // this is to use the tag in the table to properly display the information. I could have used a regular list but I found this and wanted to make it look nice.
 const transactionLogElement = document.getElementById('transaction-log');
 
 // Function to display the total portfolio value and allocations in the HTML
