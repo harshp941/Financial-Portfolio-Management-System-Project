@@ -9,9 +9,8 @@
     <h1>Financial Portfolio Management System</h1>
 
     <!-- Portfolio details and transaction log sections here -->
-     <!-- Portfolio Display -->
     <div>
-        <h2>Portfolio Value:</h2>
+        <h2>Portfolio Value: <span id="portfolio-value"></span></h2>
         <h3>Portfolio Allocation</h3>
         <table id="portfolio-allocation">
             <thead>
@@ -20,25 +19,17 @@
                     <th>Allocation (%)</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Portfolio allocation will be dynamically inserted here -->
-            </tbody>
+        <tbody>
+            
+        </tbody>
+    
         </table>
-    </div>
-    <div class="form-container">
-        <h3>Make a Transaction</h3>
-        <form id="transaction-form">
-            <label for="asset-id">Asset ID:</label>
-            <input type="number" id="asset-id" required>
-            <label for="transaction-type">Type:</label>
-            <select id="transaction-type">
-                <option value="buy">Buy</option>
-                <option value="sell">Sell</option>
-            </select>
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" required>
-            <button type="submit">Submit Transaction</button>
-        </form>
+    </div> 
+    <div id="transaction-history">
+        <h3>Transaction History</h3>
+        <ul id="transaction-log">
+            <!-- Transaction logs will be dynamically inserted here -->
+        </ul>
     </div>
 
     <!-- Main script entry point with module type -->

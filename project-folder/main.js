@@ -1,38 +1,52 @@
+// Import required functions and classes
 import { calculatePortfolioValue, getPortfolioAllocation } from './portfolio.js';
 import { Transaction } from './transaction.js';
 
-// this is to dissplay the total portfolio value and allocations
+// Reference to the HTML elements for updating the UI
+const portfolioValueElement = document.getElementById('portfolio-value');
+const portfolioAllocationElement = document.getElementById('portfolio-allocation').getElementsByTagName('tbody')[0];
+const transactionLogElement = document.getElementById('transaction-log');
+
+// Function to display the total portfolio value and allocations in the HTML
 function displayPortfolio() {
     const portfolioValue = calculatePortfolioValue();
-    console.log("Total Portfolio Value: $", portfolioValue);
+    portfolioValueElement.textContent = `$${portfolioValue.toFixed(2)}`;
 
+    // Display the portfolio allocation
     const allocations = getPortfolioAllocation();
-    console.log("Portfolio Allocation:");
     allocations.forEach(asset => {
-        console.log(`${asset.name}: ${asset.allocation}%`);
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${asset.name}</td><td>${asset.allocation}%</td>`;
+        portfolioAllocationElement.appendChild(row);
     });
 }
 
-// Making a few transactions
+// Function to log transactions to the HTML
+function logTransaction(transactionMessage) {
+    const listItem = document.createElement('li');
+    listItem.textContent = transactionMessage;
+    transactionLogElement.appendChild(listItem);
+}
+
+// this is to perform a few transactions
 function performTransactions() {
     try {
-        const buyTransaction = new Transaction(1, 'buy', 10); // Buying 10 units of Bond 1
+        const buyTransaction = new Transaction(1, 'buy', 10); // Buying 10 units of Stock A
         buyTransaction.execute();
+        logTransaction(`Bought 10 units of Vanguard ETF.`);
 
-        const sellTransaction = new Transaction(2, 'sell', 5); // Selling 5 units of Stock 2
+        const sellTransaction = new Transaction(2, 'sell', 5); // Selling 5 units of Bond B
         sellTransaction.execute();
+        logTransaction(`Sold 5 units of Apple Stock.`);
     } catch (error) {
-        console.error(error.message);
+        logTransaction(`Error: ${error.message}`);
     }
 }
 
-// this is to display portfolio before transactions
-console.log("Initial Portfolio:");
-displayPortfolio();
 
-// this is to perform transactions
+// this is to perform some transactions
 performTransactions();
 
-// this is to display portfolio after transactions
+// Display updated portfolio value and allocation
 console.log("\nUpdated Portfolio:");
 displayPortfolio();
