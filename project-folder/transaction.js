@@ -1,4 +1,4 @@
-import { assets, getAssetById } from './asset.js';
+import { getAssetById } from './asset.js';
 
 // Making the Transaction class
 export class Transaction {
